@@ -1,0 +1,10 @@
+Student ID: 21
+Name: sadeem
+Phone: 566
+Branch: jed
+Appointments:
+- Dentist at 3:00
+- Cardiologist at 4:00
+Health Record:
+- sadeeem
+--------------------------------------------------
