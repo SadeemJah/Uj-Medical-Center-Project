@@ -5,7 +5,22 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+    //Singleton pattern
     public class RecordManager {
+        private static RecordManager instance;
+
+        //private constructor to prevent direct instantiation
+        private RecordManager() {}
+
+        //public method to get the one and only instance
+        public static RecordManager getInstance() {
+            if (instance == null) {
+                instance = new RecordManager();
+            }
+            return instance;
+        }
+
+        
         public static void saveStudentRecords(ArrayList<Student> students, String filename) {
             try (FileWriter writer = new FileWriter(filename)) {
                 for (Student student : students) {
