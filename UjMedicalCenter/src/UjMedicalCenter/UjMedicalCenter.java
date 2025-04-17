@@ -92,7 +92,8 @@ public class UjMedicalCenter {
                     break;
 
                 case 0:
-                    RecordManager.saveStudentRecords(students, "students.txt");
+                    RecordManager recordManager = RecordManager.getInstance();
+                    recordManager.saveStudentRecords(students, "students.txt");
                     System.out.println("Get Well Soon!");
                     return;
 
