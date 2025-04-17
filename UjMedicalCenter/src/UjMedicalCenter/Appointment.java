@@ -43,7 +43,8 @@ public class Appointment implements Cloneable {
                 int timeIndex = input.nextInt() - 1;
                 if (timeIndex >= 0 && timeIndex < timeSlots.size()) {
                     String time = timeSlots.get(timeIndex);
-                    Appointment appointment = new Appointment(selectedDoctor.getSpecialization(), time);
+                    Appointment baseAppointment = new Appointment(selectedDoctor.getSpecialization(),time); //Prototype Design Pattern was used here to create a copy of an existing appointment object
+                    Appointment appointment = baseAppointment.clone();    
                     student.addAppointment(appointment);
                     timeSlots.remove(timeIndex);
                     System.out.println("Appointment booked!");
