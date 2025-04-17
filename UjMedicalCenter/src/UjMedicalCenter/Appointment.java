@@ -3,7 +3,7 @@ package UjMedicalCenter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Appointment {
+public class Appointment implements Cloneable {
     private String specialization;
     private String time;
 
