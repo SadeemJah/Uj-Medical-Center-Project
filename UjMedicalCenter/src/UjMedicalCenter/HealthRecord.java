@@ -3,9 +3,10 @@ package UjMedicalCenter;
 
 import java.util.ArrayList;
 
+// Applying Composite Pattern HealthRecord implements RecordComponent interface
 public class HealthRecord {
     private Student student;
-    private ArrayList<String> notes = new ArrayList<>();
+    private ArrayList<RecordComponent> notes = new ArrayList<>();
 
     public HealthRecord(Student student) {
         this.student = student;
@@ -21,8 +22,8 @@ public class HealthRecord {
 
     public void showRecord() {
         System.out.println("\uD83E\uDE7A Health Record for " + student.getName());
-        for (String note : notes) {
-            System.out.println("- " + note);
+         for (RecordComponent note : notes) {
+            note.showDetails();
         }
     }
 }
