@@ -6,22 +6,19 @@ public class Student {
     private int ID;
     private String name;
     private int phoneNumber;
-    private String branch;
     private ArrayList<Appointment> appointments = new ArrayList<>();
     private HealthRecord healthRecord;
 
-    public Student(int ID, String name, int phoneNumber, String branch) {
+    public Student(int ID, String name, int phoneNumber) {
         this.ID = ID;
         this.name = name;
         this.phoneNumber = phoneNumber;
-        this.branch = branch;
         this.healthRecord = new HealthRecord(this);
     }
 
     public int getID() { return ID; }
     public String getName() { return name; }
     public int getPhoneNumber() { return phoneNumber; }
-    public String getBranch() { return branch; }
     public ArrayList<Appointment> getAppointments() { return appointments; }
     public HealthRecord getHealthRecord() { return healthRecord; }
 
