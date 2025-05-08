@@ -6,17 +6,16 @@ public class UjMedicalCenter {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         ArrayList<Doctor> doctorList = new ArrayList<>();
-        ArrayList<String> timeSlots = new ArrayList<>(List.of("1:30","2:30","2:00","3:00", "3:30", "4:00", "4:30", "5:00"));
+        ArrayList<String> timeSlots = new ArrayList<>(List.of("3:00", "3:30", "4:00", "4:30", "5:00"));
         ArrayList<Student> students = new ArrayList<>();
         ArrayList<FeedBack> feedbacks = new ArrayList<>();
 
-        // Sample doctors (you can load from a file too)
-        doctorList.add(new Doctor(1, "DR. Motasim Jawi", "20 - 04 - 2025", "Lipid Disease Clinic"));
-        doctorList.add(new Doctor(2, "DR. ABDULRAHMAN alshamrani", "22 - 04 - 2025", "Ophthalmology"));
-        doctorList.add(new Doctor(3, "DR. Shahad Abbas", "26 - 04 - 2025", "General Physician"));
+        // Sample doctors (you can load from file too)
+        doctorList.add(new Doctor(1, "Dr. Amal", 20250220, "Dentist"));
+        doctorList.add(new Doctor(2, "Dr. Saeed", 987654321, "Cardiologist"));
 
         while (true) {
-            System.out.println("\n Welcome to UJ Medical Center Menu:");
+            System.out.println("\n Welcome to UJ Medical Center Menu");
             System.out.println("1. Register Student");
             System.out.println("2. Book Appointment");
             System.out.println("3. Show Appointments");
@@ -37,9 +36,7 @@ public class UjMedicalCenter {
                     System.out.print("Enter ID: ");
                     int id = input.nextInt();
                     input.nextLine();
-                    System.out.print("Enter branch: ");
-                    String branch = input.nextLine();
-                    students.add(new Student(id, name, phone, branch));
+                    students.add(new Student(id, name, phone));
                     break;
 
                 case 2:
@@ -63,7 +60,8 @@ public class UjMedicalCenter {
                         if (hrChoice == 1) {
                             System.out.print("Enter note: ");
                             String note = input.nextLine();
-                            studentHR.getHealthRecord().addNote(note);
+                            RecordComponent.Note newNote = new RecordComponent.Note(note);
+                            studentHR.getHealthRecord().addNote(newNote);
                         } else {
                             studentHR.getHealthRecord().showRecord();
                         }
