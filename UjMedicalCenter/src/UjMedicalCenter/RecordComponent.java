@@ -2,17 +2,24 @@ package UjMedicalCenter;
 
 public interface RecordComponent {
     void showDetails();
+    String getContent();
 
-    public class Note implements RecordComponent {
-        private String note;
 
-        public Note(String note) {
-            this.note = note;
+     class Note implements RecordComponent {
+     private String content;
+         
+       public Note(String content) {
+            this.content = content;
         }
 
         @Override
         public void showDetails() {
-            System.out.println("- " + note);
+            System.out.println("- " + content);
+        }
+
+        @Override
+        public String getContent() {
+            return content;
         }
     }
 }
