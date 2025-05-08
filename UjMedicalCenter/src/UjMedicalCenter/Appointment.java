@@ -6,6 +6,8 @@ import java.util.Scanner;
 public class Appointment implements Cloneable {
     private String specialization;
     private String time;
+    private boolean urgentCase = false;
+
 
     public Appointment(String specialization, String time) {
         this.specialization = specialization;
@@ -13,11 +15,22 @@ public class Appointment implements Cloneable {
     }
 
     public String getSpecialization() { return specialization; }
-    public String getTime() { return time; }
+    public String getTime() { return time;
+    }
+
+    @Override
+    public Appointment clone() {
+        try {
+            return (Appointment) super.clone();
+        } catch (CloneNotSupportedException e) {
+            return null;
+        }
+    }
 
     public String toString() {
         return specialization + " at " + time;
     }
+
 
     public static void bookAppointments(Student student, ArrayList<Doctor> doctorList, ArrayList<String> timeSlots) {
         Scanner input = new Scanner(System.in);
@@ -43,8 +56,11 @@ public class Appointment implements Cloneable {
                 int timeIndex = input.nextInt() - 1;
                 if (timeIndex >= 0 && timeIndex < timeSlots.size()) {
                     String time = timeSlots.get(timeIndex);
-                    Appointment baseAppointment = new Appointment(selectedDoctor.getSpecialization(),time); //Prototype Design Pattern was used here to create a copy of an existing appointment object
-                    Appointment appointment = baseAppointment.clone();    
+
+                    //Prototype Design Pattern was used here to create a copy of an existing appointment object
+                    Appointment baseAppointment = new Appointment(selectedDoctor.getSpecialization(),time);
+                    Appointment appointment = baseAppointment.clone();
+
                     student.addAppointment(appointment);
                     timeSlots.remove(timeIndex);
                     System.out.println("Appointment booked!");
@@ -53,7 +69,7 @@ public class Appointment implements Cloneable {
                 System.out.println("Invalid selection.");
             }
 
-            System.out.println("Do you want to book another appointment? (y/n):");
+            System.out.print("Do you want to book another appointment? (y/n):");
             if (!input.next().equalsIgnoreCase("y")) break;
         }
     }
@@ -64,4 +80,9 @@ public class Appointment implements Cloneable {
             System.out.println("- " + appointment);
         }
     }
+
+    public void setUrgentCase(boolean urgentCase) {
+        this.urgentCase = urgentCase;
+    }
+
 }
