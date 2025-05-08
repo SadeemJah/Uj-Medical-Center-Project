@@ -7,16 +7,16 @@ import java.util.ArrayList;
 public class HealthRecord {
     private Student student;
     private ArrayList<RecordComponent> notes = new ArrayList<>();
-
+    
     public HealthRecord(Student student) {
         this.student = student;
     }
 
-    public void addNote(String note) {
+    public void addNote(RecordComponent note) {
         notes.add(note);
     }
 
-    public ArrayList<String> getNotes() {
+    public ArrayList<RecordComponent> getNotes() {
         return notes;
     }
 
