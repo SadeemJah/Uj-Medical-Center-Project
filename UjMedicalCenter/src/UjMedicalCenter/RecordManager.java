@@ -20,7 +20,7 @@ import java.util.ArrayList;
             }
             
             public static void saveStudentRecords(ArrayList<Student> students, String filename) {
-            try (FileWriter writer = new FileWriter(filename)) {
+            try (FileWriter writer = new FileWriter(filename,true)) {
                 for (Student student : students) {
                     writer.write("Student ID: " + student.getID() + "\n");
                     writer.write("Name: " + student.getName() + "\n");
