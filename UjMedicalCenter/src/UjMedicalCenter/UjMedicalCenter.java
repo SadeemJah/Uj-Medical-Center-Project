@@ -14,6 +14,9 @@ public class UjMedicalCenter {
         doctorList.add(new Doctor(1, "Dr. Amal", 20250220, "Dentist"));
         doctorList.add(new Doctor(2, "Dr. Saeed", 987654321, "Cardiologist"));
 
+        // Command pattern setup
+        CommandInvoker invoker = new CommandInvoker();
+
         while (true) {
             System.out.println("\n Welcome to UJ Medical Center Menu");
             System.out.println("1. Register Student");
@@ -22,21 +25,16 @@ public class UjMedicalCenter {
             System.out.println("4. Add/View Health Record");
             System.out.println("5. Leave Feedback");
             System.out.println("6. Show All Feedbacks");
+            System.out.println("7. Undo Last Command");
             System.out.println("0. Exit");
             System.out.print("Choose One of the options: ");
             int choice = input.nextInt();
 
             switch (choice) {
                 case 1:
-                    input.nextLine();
-                    System.out.print("Enter student name: ");
-                    String name = input.nextLine();
-                    System.out.print("Enter phone: ");
-                    int phone = input.nextInt();
-                    System.out.print("Enter ID: ");
-                    int id = input.nextInt();
-                    input.nextLine();
-                    students.add(new Student(id, name, phone));
+                    RegisterStudentCommand registerCommand = new RegisterStudentCommand(students, input);
+                    invoker.registerCommand(1, registerCommand);
+                    invoker.executeCommand(1);
                     break;
 
                 case 2:
@@ -87,6 +85,10 @@ public class UjMedicalCenter {
                 case 6:
                     for (FeedBack f : feedbacks)
                         System.out.println(f);
+                    break;
+
+                case 7:
+                    invoker.undoLastCommand();
                     break;
 
                 case 0:
